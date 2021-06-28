@@ -1,0 +1,4 @@
+[submodule "src/Silimium/UserBundle"]
+	path = src/Silimium/UserBundle
+	url = git@github.com:silimium/user-feature.git
+	branch = .
