@@ -2,3 +2,7 @@
 	path = src/Silimium/UserBundle
 	url = git@github.com:silimium/user-feature.git
 	branch = .
+[submodule "src/Silimium/TaskBundle"]
+	path = src/Silimium/TaskBundle
+	url = git@github.com:silimium/task-feature.git
+	branch = .
