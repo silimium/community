@@ -1,0 +1,75 @@
+version: "3.7"
+services:
+  apache:
+    build:
+      context: .
+      target: apache
+      args:
+        USER: "${DOCKER_UID:-1000}"
+    environment:
+      - APP_ENV=${APP_ENV:-dev}
+    volumes:
+      - "./:/srv/app:rw"
+    user: "${DOCKER_UID:-1000}"
+    restart: unless-stopped
+    ports:
+      - "${DOCKER_PORT_HTTP:-8080}:8080"
+    depends_on:
+      postgresql: { condition: service_healthy }
+    networks:
+      - default
+
+  php:
+    build:
+      context: .
+      target: php
+      args:
+        USER: "${DOCKER_UID:-1000}"
+    environment:
+      - APP_ENV=${APP_ENV:-dev}
+    volumes:
+      - "./:/srv/app:rw"
+    user: "${DOCKER_UID:-1000}"
+    restart: "no"
+    init: true
+    scale: 0
+    depends_on:
+      postgresql: { condition: service_healthy }
+    networks:
+      - default
+
+  postgresql:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-docker}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-docker}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "psql", "--username=${POSTGRES_USER:-docker}", "--no-password", "-c", '\l']
+      start_period: 20s
+      interval: 1s
+      retries: 10
+    volumes:
+      - "dbdata:/var/lib/postgresql/data"
+    ports:
+      - "${DOCKER_PORT_POSTGRES:-5432}:5432"
+    networks:
+      - default
+
+  composer:
+    build:
+      context: .
+      target: composer
+    working_dir: /srv/app
+    volumes:
+      - "./:/srv/app:rw"
+      - "${COMPOSER_HOME:-~/.composer}:/tmp"
+    user: "${DOCKER_UID:-1000}"
+    restart: "no"
+    scale: 0
+
+networks:
+  default: ~
+
+volumes:
+  dbdata: ~
