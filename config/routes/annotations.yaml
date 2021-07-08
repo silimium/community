@@ -3,5 +3,5 @@
 #    type: annotation
 
 kernel:
-    resource: ../../src/AppKernel.php
+    resource: ../../src/Kernel.php
     type: annotation

@@ -20,6 +20,7 @@ FROM composer AS vendors
 
 WORKDIR /srv/app
 RUN mkdir /srv/app/vendor
+COPY components components
 COPY composer.json composer.lock symfony.lock ./
 
 RUN composer install \

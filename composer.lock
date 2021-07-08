@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ef5ae0e7e226afabc167096a8d9b3959",
+    "content-hash": "85bd1bbb109feec32535d4d12f288d26",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -1779,6 +1779,48 @@
                 "source": "https://github.com/php-fig/log/tree/1.1.4"
             },
             "time": "2021-05-03T11:20:27+00:00"
+        },
+        {
+            "name": "silimium/task-component",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "components/task",
+                "reference": "162c14401ba1d5edd5d060a2a0b1c6cc2268c328"
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Silimium\\Task\\": "src/"
+                }
+            },
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "silimium/user-component",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "components/user",
+                "reference": "47bc3082a387a390dfdd4367e8e4244bec193b49"
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Silimium\\User\\": "src/"
+                }
+            },
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "symfony/cache",
@@ -5186,7 +5228,10 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "silimium/task-component": 20,
+        "silimium/user-component": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
@@ -5195,5 +5240,5 @@
         "ext-iconv": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.0.0"
 }

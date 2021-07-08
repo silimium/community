@@ -1,0 +1,8 @@
+[submodule "components/task"]
+	path = components/task
+	url = git@github.com:silimium/task-component.git
+	branch = .
+[submodule "components/user"]
+	path = components/user
+	url = git@github.com:silimium/user-component.git
+	branch = .
