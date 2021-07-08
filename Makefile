@@ -7,6 +7,10 @@ up:
 	@echo " Application is up and running at http://localhost:8080"
 	@echo "\e[49m\e[39m\n"
 
+.PHONY: down
+down:
+	docker-compose down --volumes
+
 .PHONY: setup
 setup:
 	git config submodule.recurse true
